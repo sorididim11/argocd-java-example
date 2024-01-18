@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+patches:
+  - path: deployment.yml
+  - path: service.yml
+
+generatorOptions:
+  disableNameSuffixHash: false
+
+# configMapGenerator:
+# - behavior: create
+#   files:
+#   - files/index.html
+#   name: index-html-configmap
+# - literals:
+#   - endpoint="api.example.com/users"
+#   name: endpoint-configmap
+images:
+  - name: public.ecr.aws/q0y1s1a8/java-example
+    newTag: build-1140859210
